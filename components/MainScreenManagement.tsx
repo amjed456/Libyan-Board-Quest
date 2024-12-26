@@ -100,7 +100,7 @@ export default function MainScreenManagement() {
         const fileName = `hero-${Date.now()}.${fileExt}`
         
         // Upload to hero bucket
-        const { error: uploadError, data: uploadData } = await supabase.storage
+        const { error: uploadError } = await supabase.storage
           .from('hero')
           .upload(`images/${fileName}`, formData.hero_image, {
             cacheControl: '3600',

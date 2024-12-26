@@ -199,7 +199,12 @@ export default function ProductManagement() {
       }
       reader.readAsDataURL(file)
     } catch (error) {
-      toast.error(error.message)
+      // Type guard for Error instances
+      if (error instanceof Error) {
+        toast.error(error.message)
+      } else {
+        toast.error('An error occurred while processing the image')
+      }
       e.target.value = '' // Reset input
     }
   }

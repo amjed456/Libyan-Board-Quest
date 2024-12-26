@@ -128,9 +128,9 @@ export default function Header() {
             </Link>
           )}
           <div className="relative" ref={cartRef}>
-            <button 
-              className="p-2 rounded-full bg-gray-700 hover:bg-gray-600 transition-colors relative"
+            <button
               onClick={() => setIsCartOpen(!isCartOpen)}
+              className="cart-button relative p-2 text-gray-100 hover:text-purple-400 transition-colors"
             >
               <ShoppingCart className="w-6 h-6 text-gray-300" />
               {cartCount > 0 && (

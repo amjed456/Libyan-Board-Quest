@@ -10,9 +10,10 @@ import { PLACEHOLDER_IMAGE } from '@/lib/constants'
 
 interface CartDropdownProps {
   isOpen: boolean
+  onClose: () => void
 }
 
-export default function CartDropdown({ isOpen }: CartDropdownProps) {
+export default function CartDropdown({ isOpen, onClose }: CartDropdownProps) {
   const { cartItems, removeFromCart, updateQuantity } = useCart()
   const [isAuthenticated, setIsAuthenticated] = useState(false)
   const router = useRouter()
@@ -31,6 +32,23 @@ export default function CartDropdown({ isOpen }: CartDropdownProps) {
 
     return () => subscription.unsubscribe()
   }, [])
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement
+      if (!target.closest('.cart-dropdown') && !target.closest('.cart-button')) {
+        onClose()
+      }
+    }
+
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [isOpen, onClose])
 
   if (!isOpen) return null
 
@@ -54,7 +72,7 @@ export default function CartDropdown({ isOpen }: CartDropdownProps) {
   const total = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0)
 
   return (
-    <div className="absolute right-0 mt-2 w-96 bg-white rounded-lg shadow-xl z-50">
+    <div className="cart-dropdown absolute right-0 mt-2 w-96 bg-white rounded-lg shadow-xl z-50">
       <div className="p-4">
         <h3 className="text-lg font-semibold mb-4">Shopping Cart</h3>
         {cartItems.length === 0 ? (

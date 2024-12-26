@@ -16,10 +16,6 @@ interface Product {
   image_url?: string
 }
 
-interface CartProduct extends Product {
-  quantity?: number;
-}
-
 export default function ProductGrid() {
   const [products, setProducts] = useState<Product[]>([])
   const { addToCart } = useCart()

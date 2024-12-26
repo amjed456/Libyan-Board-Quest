@@ -8,9 +8,12 @@ import { MainContent } from '@/types'
 
 export default function Hero() {
   const [content, setContent] = useState<MainContent>({
+    id: 'default',
     big_title: 'Discover the Future of Tech',
     paragraph: 'Experience cutting-edge technology that transforms your daily life.',
-    button_text: 'Explore Now'
+    button_text: 'Explore Now',
+    created_at: new Date().toISOString(),
+    hero_image: undefined
   })
   const [isLoading, setIsLoading] = useState(true)
 
