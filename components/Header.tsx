@@ -92,9 +92,24 @@ export default function Header() {
     <header className="bg-gray-800 shadow-md">
       <nav className="container mx-auto px-4 py-4">
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-          <Link href="/" className="text-xl sm:text-2xl font-bold text-gray-100">
-            Libyan Board Quest
-          </Link>
+          <div className="flex items-center gap-8">
+            <Link href="/" className="text-xl sm:text-2xl font-bold text-gray-100">
+              Libyan Board Quest
+            </Link>
+            
+            {/* Desktop Navigation */}
+            <div className="hidden sm:flex items-center space-x-6">
+              <Link href="/products" className="text-gray-300 hover:text-white">
+                Products
+              </Link>
+              <Link href="/about" className="text-gray-300 hover:text-white">
+                About Us
+              </Link>
+              <Link href="/contact" className="text-gray-300 hover:text-white">
+                Contact
+              </Link>
+            </div>
+          </div>
           
           <div className="flex items-center gap-2 sm:gap-4">
             <div className="flex items-center gap-2">
@@ -140,6 +155,7 @@ export default function Header() {
                 <CartDropdown isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
               </div>
 
+              {/* Mobile Menu Button - Only shows on mobile */}
               <button
                 className="sm:hidden p-2 text-gray-300 hover:text-white"
                 onClick={() => setSidebarOpen(!isSidebarOpen)}
