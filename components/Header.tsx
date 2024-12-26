@@ -89,57 +89,52 @@ export default function Header() {
 
   return (
     <header className="bg-gray-800 shadow-md">
-      <nav className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <Link href="/" className="text-2xl font-bold text-gray-100">
-          Libyan Board Quest
-        </Link>
-        <ul className="flex space-x-6">
-          <li><Link href="#" className="text-gray-300 hover:text-gray-100">Products</Link></li>
-          <li><Link href="#" className="text-gray-300 hover:text-gray-100">About</Link></li>
-          <li><Link href="#" className="text-gray-300 hover:text-gray-100">Contact</Link></li>
-        </ul>
-        <div className="flex items-center gap-4">
-          {loading ? (
-            <div className="w-[100px] h-8 bg-gray-700 animate-pulse rounded" />
-          ) : user ? (
-            <div className="flex items-center gap-4">
-              <span className="text-gray-300">{user.user_metadata.username}</span>
-              {isAdmin && (
-                <Link href="/admin">
-                  <Button className="bg-purple-600 hover:bg-purple-700 text-white">
-                    Admin Panel
-                  </Button>
-                </Link>
-              )}
-              <Button 
-                onClick={handleSignOut}
-                className="bg-purple-600 hover:bg-purple-700 text-white"
+      <nav className="container mx-auto px-4 py-4">
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+          <Link href="/" className="text-xl sm:text-2xl font-bold text-gray-100">
+            Libyan Board Quest
+          </Link>
+          <div className="flex items-center gap-2 sm:gap-4">
+            {user ? (
+              <div className="flex items-center gap-2 sm:gap-4 flex-wrap justify-center">
+                <span className="text-sm sm:text-base text-gray-300">{user.user_metadata.username}</span>
+                {isAdmin && (
+                  <Link href="/admin">
+                    <Button className="bg-purple-600 hover:bg-purple-700 text-white text-sm sm:text-base">
+                      Admin Panel
+                    </Button>
+                  </Link>
+                )}
+                <Button 
+                  onClick={handleSignOut}
+                  className="bg-purple-600 hover:bg-purple-700 text-white text-sm sm:text-base"
+                >
+                  Sign Out
+                </Button>
+              </div>
+            ) : (
+              <Link href="/auth/signin">
+                <Button 
+                  className="bg-purple-600 hover:bg-purple-700 text-white text-sm sm:text-base"
+                >
+                  Sign In
+                </Button>
+              </Link>
+            )}
+            <div className="relative" ref={cartRef}>
+              <button
+                onClick={() => setIsCartOpen(!isCartOpen)}
+                className="cart-button relative p-2 text-gray-100 hover:text-purple-400 transition-colors"
               >
-                Sign Out
-              </Button>
+                <ShoppingCart className="w-6 h-6 text-gray-300" />
+                {cartCount > 0 && (
+                  <span className="absolute -top-2 -right-2 bg-purple-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center animate-scale">
+                    {cartCount}
+                  </span>
+                )}
+              </button>
+              <CartDropdown isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
             </div>
-          ) : (
-            <Link href="/auth/signin">
-              <Button 
-                className="bg-purple-600 hover:bg-purple-700 text-white"
-              >
-                Sign In
-              </Button>
-            </Link>
-          )}
-          <div className="relative" ref={cartRef}>
-            <button
-              onClick={() => setIsCartOpen(!isCartOpen)}
-              className="cart-button relative p-2 text-gray-100 hover:text-purple-400 transition-colors"
-            >
-              <ShoppingCart className="w-6 h-6 text-gray-300" />
-              {cartCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-purple-600 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center animate-scale">
-                  {cartCount}
-                </span>
-              )}
-            </button>
-            <CartDropdown isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
           </div>
         </div>
       </nav>

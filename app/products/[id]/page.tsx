@@ -94,7 +94,7 @@ export default function ProductDetails({ params }: { params: Promise<{ id: strin
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#5B2A86] via-[#2D1B69] to-gray-900 py-12 px-4">
+    <div className="min-h-screen bg-gradient-to-b from-[#5B2A86] via-[#2D1B69] to-gray-900 py-6 sm:py-12 px-4">
       <div className="max-w-6xl mx-auto">
         <div className="mb-8">
           <Link href="/" className="inline-flex items-center text-purple-400 hover:text-purple-300">
@@ -103,8 +103,8 @@ export default function ProductDetails({ params }: { params: Promise<{ id: strin
           </Link>
         </div>
 
-        <div className="bg-gray-800 rounded-lg p-8 shadow-xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        <div className="bg-gray-800 rounded-lg p-4 sm:p-8 shadow-xl">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8 mb-4 sm:mb-8">
             <div className="flex flex-col items-center">
               <div className="relative h-96 w-full mb-4">
                 <img

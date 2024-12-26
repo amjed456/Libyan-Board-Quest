@@ -70,7 +70,7 @@ export default function AdminPage() {
   if (!isAdmin) return null
 
   return (
-    <div className="min-h-screen bg-gray-900 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gray-900 py-6 sm:py-12 px-4">
       <div className="max-w-4xl mx-auto">
         <div className="mb-8">
           <Link href="/" className="inline-flex items-center text-purple-400 hover:text-purple-300">
@@ -82,22 +82,22 @@ export default function AdminPage() {
           Admin Panel
         </h2>
 
-        <div className="flex gap-4 mb-8">
+        <div className="flex flex-wrap gap-2 sm:gap-4 mb-4 sm:mb-8">
           <Button
             onClick={() => setActiveTab('admins')}
-            className={activeTab === 'admins' ? 'bg-purple-600' : 'bg-gray-700'}
+            className={`text-sm sm:text-base ${activeTab === 'admins' ? 'bg-purple-600' : 'bg-gray-700'}`}
           >
             Manage Admins
           </Button>
           <Button
             onClick={() => setActiveTab('products')}
-            className={activeTab === 'products' ? 'bg-purple-600' : 'bg-gray-700'}
+            className={`text-sm sm:text-base ${activeTab === 'products' ? 'bg-purple-600' : 'bg-gray-700'}`}
           >
             Manage Products
           </Button>
           <Button
             onClick={() => setActiveTab('mainscreen')}
-            className={activeTab === 'mainscreen' ? 'bg-purple-600' : 'bg-gray-700'}
+            className={`text-sm sm:text-base ${activeTab === 'mainscreen' ? 'bg-purple-600' : 'bg-gray-700'}`}
           >
             Main Screen
           </Button>
