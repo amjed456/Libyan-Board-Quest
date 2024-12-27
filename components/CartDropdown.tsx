@@ -54,7 +54,7 @@ export default function CartDropdown({ isOpen, onClose }: CartDropdownProps) {
 
   if (!isAuthenticated) {
     return (
-      <div className="absolute right-0 mt-2 w-[calc(100vw-2rem)] sm:w-96 bg-white rounded-lg shadow-xl z-50 max-w-[320px] mx-auto sm:mx-0">
+      <div className="fixed sm:absolute top-16 sm:top-auto left-4 right-4 sm:right-0 sm:left-auto bg-white rounded-lg shadow-xl z-50">
         <div className="p-4">
           <h3 className="text-lg font-semibold mb-4">Shopping Cart</h3>
           <p className="text-gray-500 mb-4">Please sign in to view your cart</p>
@@ -72,7 +72,7 @@ export default function CartDropdown({ isOpen, onClose }: CartDropdownProps) {
   const total = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0)
 
   return (
-    <div className="cart-dropdown fixed sm:absolute inset-x-4 sm:inset-x-auto sm:right-0 mt-2 w-auto sm:w-96 bg-white rounded-lg shadow-xl z-50 mx-auto sm:mx-0 max-w-[calc(100vw-2rem)]">
+    <div className="cart-dropdown fixed sm:absolute top-16 sm:top-auto left-4 right-4 sm:right-0 sm:left-auto bg-white rounded-lg shadow-xl z-50">
       <div className="p-4">
         <h3 className="text-lg font-semibold mb-4">Shopping Cart</h3>
         {cartItems.length === 0 ? (
