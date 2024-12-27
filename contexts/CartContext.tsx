@@ -36,17 +36,24 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const checkAuth = async () => {
-      const { data: { session } } = await supabase.auth.getSession()
-      setIsAuthenticated(!!session)
-      
-      if (!session) {
-        setCartItems([])
-        localStorage.removeItem('cart_temp')
-      } else {
-        const storedCart = localStorage.getItem(`cart_${session.user.id}`)
-        if (storedCart) {
-          setCartItems(JSON.parse(storedCart))
+      try {
+        const { data: { session } } = await supabase.auth.getSession()
+        setIsAuthenticated(!!session)
+        
+        if (!session) {
+          setCartItems([])
+          setCartCount(0)
+          localStorage.removeItem('cart_temp')
+        } else {
+          const storedCart = localStorage.getItem(`cart_${session.user.id}`)
+          if (storedCart) {
+            const parsedCart = JSON.parse(storedCart)
+            setCartItems(parsedCart)
+            setCartCount(parsedCart.reduce((sum: number, item: CartItem) => sum + item.quantity, 0))
+          }
         }
+      } catch (error) {
+        console.error('Error checking auth:', error)
       }
     }
 
@@ -56,6 +63,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       setIsAuthenticated(!!session)
       if (!session) {
         setCartItems([])
+        setCartCount(0)
         localStorage.removeItem('cart_temp')
       }
     })

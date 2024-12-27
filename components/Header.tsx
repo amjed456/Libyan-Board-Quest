@@ -67,12 +67,27 @@ export default function Header() {
   }, [])
 
   const handleSignOut = async () => {
-    const { error } = await supabase.auth.signOut()
-    if (error) {
-      toast.error('Error signing out')
-    } else {
+    try {
+      // First clear all states
+      setUser(null)
+      setIsAdmin(false)
+      setIsCartOpen(false)
+      setSidebarOpen(false)
+
+      // Then sign out from Supabase
+      const { error } = await supabase.auth.signOut()
+      if (error) throw error
+
+      // Clear local storage
+      localStorage.clear()
+
+      // Show success message and redirect
+      toast.success('Signed out successfully')
       router.push('/')
       router.refresh()
+    } catch (error) {
+      console.error('Error signing out:', error)
+      toast.error('Error signing out')
     }
   }
 

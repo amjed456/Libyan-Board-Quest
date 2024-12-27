@@ -72,7 +72,7 @@ export default function CartDropdown({ isOpen, onClose }: CartDropdownProps) {
   const total = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0)
 
   return (
-    <div className="cart-dropdown fixed sm:absolute right-2 sm:right-0 left-2 sm:left-auto mt-2 w-auto sm:w-96 bg-white rounded-lg shadow-xl z-50">
+    <div className="cart-dropdown fixed sm:absolute inset-x-4 sm:inset-x-auto sm:right-0 mt-2 w-auto sm:w-96 bg-white rounded-lg shadow-xl z-50 mx-auto sm:mx-0 max-w-[calc(100vw-2rem)]">
       <div className="p-4">
         <h3 className="text-lg font-semibold mb-4">Shopping Cart</h3>
         {cartItems.length === 0 ? (
