@@ -14,7 +14,7 @@ import CartDropdown from './CartDropdown'
 export default function Header() {
   const [user, setUser] = useState<User | null>(null)
   const [isAdmin, setIsAdmin] = useState(false)
-  const [loading, setLoading] = useState(true)
+  const [, setLoading] = useState(true)
   const router = useRouter()
   const [isCartOpen, setIsCartOpen] = useState(false)
   const { cartCount } = useCart()
